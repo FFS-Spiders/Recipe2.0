@@ -1,15 +1,24 @@
 const path = require('path');
 const express = require('express');
 const usersRouter = require('./routers/users');
-
 const app = express();
 const mongoose = require('mongoose');
 const PORT = 3000;
+require('dotenv').config();
 
-mongoose.connect('mongodb://localhost/users');
-const db = mongoose.connection;
-db.on('error', (error) => console.error(error));
-db.once('open', () => console.log('Connected to Database'));
+// mongoose.connect('mongodb://localhost/users');
+// const db = mongoose.connection;
+// db.on('error', (error) => console.error(error));
+// db.once('open', () => console.log('Connected to Database'));
+
+
+const MONGO_URI = process.env.MONGO_URI;
+
+mongoose.connect(MONGO_URI,{
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  dbName: 'recipeDB'
+})
 
 const recipeRouter = require('./routers/recipes.js');
 
