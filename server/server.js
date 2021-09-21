@@ -17,7 +17,7 @@ const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI,{
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  dbName: 'recipeDB'
+  dbName: 'recipeDB',
 })
 
 const recipeRouter = require('./routers/recipes.js');
