@@ -28,6 +28,7 @@
     "concurrently": "^6.2.1",
     "crossenv": "^0.0.2-security",
     "css-loader": "^6.2.0",
+    "dotenv": "^10.0.0",
     "eslint": "^7.32.0",
     "express": "^4.17.1",
     "install": "^0.13.0",
