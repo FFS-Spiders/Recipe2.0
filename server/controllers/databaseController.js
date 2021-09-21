@@ -2,7 +2,8 @@ const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/users');
+// mongoose.connect('mongodb://localhost/users');
+
 const databaseController = {};
 
 // Route for getting all users
