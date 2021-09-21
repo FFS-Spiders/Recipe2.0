@@ -128,7 +128,6 @@ const App = () => {
       }
     });
   }
-
   //custom function to add an item to the favMeals state when <3 button pressed on top left corner of a meal card
   function setFav(event) {
     const name = event.target.parentNode.textContent.slice(
