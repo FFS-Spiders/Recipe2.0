@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
 
     unique: true
   },
+  // oauthId: String,
   password: {
     type: String,
     required: true
@@ -20,4 +21,3 @@ const userSchema = new mongoose.Schema({
 })
 
 module.exports = mongoose.model('User', userSchema);
-
