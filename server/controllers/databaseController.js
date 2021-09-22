@@ -41,10 +41,15 @@ databaseController.createUser = async (req, res, next) => {
 };
 
 // Deleting one user
-//not used in production version
+// not used in production version
 databaseController.deleteUser = async (req, res, next) => {
   try {
-    await res.user.remove();
+    // const user = await User.findOne({ username: req.body.username });
+    User.deleteOne({ username: req.query.username }, (err, account) => {
+      console.log(err, account)
+      return next();
+    })
+    // await res.user.remove();
     next();
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -61,9 +66,9 @@ databaseController.authenticateUser = async (req, res, next) => {
   }
   try {
     if (await bcrypt.compare(req.body.password, user.password)) {
-      res.send('Send to their page');
+      res.status(200).send('Send to their page');
     } else {
-      res.send('The username or password is incorrect');
+      res.status(404).send('The username or password is incorrect');
     }
     next();
   } catch (error) {

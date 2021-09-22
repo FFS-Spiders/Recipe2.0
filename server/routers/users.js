@@ -21,9 +21,12 @@ router.post('/create', databaseController.createUser);
 
 // Deleting one user
 //not used in production version
-router.delete('/:id', findUserById, databaseController.deleteUser, (req, res) =>
+router.delete('/:name', databaseController.deleteUser, (req, res) =>
   res.status(200).json({ message: 'Deleted user' })
 );
+// router.delete('/:id', findUserById, databaseController.deleteUser, (req, res) =>
+//   res.status(200).json({ message: 'Deleted user' })
+// );
 
 //authenticates user on local db
 router.post('/login', databaseController.authenticateUser);
