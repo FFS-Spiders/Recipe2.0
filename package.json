@@ -4,7 +4,7 @@
   "description": "Info to come :)",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --verbose",
     "start": "concurrently \"webpack serve --hot\" \"nodemon server/server.js\"",
     "build": "webpack"
   },
@@ -48,6 +48,8 @@
     "webpack-dev-server": "^4.2.1"
   },
   "devDependencies": {
+    "jest": "^27.2.1",
+    "supertest": "^6.1.6",
     "webpack-cli": "^4.8.0"
   }
 }
