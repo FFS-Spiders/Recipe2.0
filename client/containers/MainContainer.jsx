@@ -17,6 +17,9 @@ const mapDispatchToProps = dispatch => (
       return dispatch(actions.logIn(username, password))},
     createUser: (username, password) => {
       return dispatch(actions.createUser(username,password))
+    },
+    googleLogin: (profileObj) => {
+      return dispatch(actions.googleLogin(profileObj))
     }
   }
 )
@@ -26,10 +29,10 @@ class MainContainer extends Component {
     super(props);
   }
   render() {
-    if (this.props.loggedIn === 'false') {
+    if (this.props.loggedIn === false) {
       return (
         <div>
-          <UserLogin loginUser={this.props.isLoggedIn} createUser={this.props.createUser} />
+          <UserLogin loginUser={this.props.isLoggedIn} createUser={this.props.createUser} googleLogin={this.props.googleLogin}/>
         </div>
       )
     } else {
