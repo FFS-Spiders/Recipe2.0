@@ -5,12 +5,9 @@ const app = express();
 const mongoose = require('mongoose');
 const PORT = 3000;
 require('dotenv').config();
-
-// mongoose.connect('mongodb://localhost/users');
-// const db = mongoose.connection;
-// db.on('error', (error) => console.error(error));
-// db.once('open', () => console.log('Connected to Database'));
-
+const googleLogin = require('./routers/googleLogin')
+const { OAuth2Client } = require('google-auth-library')
+const client = new OAuth2Client(process.env.CLIENT_ID)
 
 const MONGO_URI = process.env.MONGO_URI;
 
@@ -19,6 +16,7 @@ mongoose.connect(MONGO_URI,{
   useUnifiedTopology: true,
   dbName: 'recipeDB',
 })
+
 
 const recipeRouter = require('./routers/recipes.js');
 
@@ -52,6 +50,7 @@ app.use(
 //custom routers
 app.use('/users', usersRouter);
 app.use('/recipes', recipeRouter);
+app.use('/google', googleLogin);
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) =>
