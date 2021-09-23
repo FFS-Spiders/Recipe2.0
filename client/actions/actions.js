@@ -57,7 +57,7 @@ export const createUser = (username, password) => (dispatch, getState) => {
       password: password
     },
     {
-      method: post,
+      method: 'POST',
       headers: {
         'Content-type': 'application/json'
       },
