@@ -5,6 +5,10 @@ const loggingInActionCreator = () => ({
   type: types.LOG_IN,
   payload: true
 });
+const createUserActionCreator = () => ({
+  type: types.CREATE_USER,
+  payload: true
+});
 
 // export const logIn = (username, password) => (dispatch, getState) => {
 //   axios({

@@ -4,6 +4,7 @@ const initialState = {
   loggedIn: false,
   username: null,
   password: null,
+  pantry: [],
 }
 
 const recipeReducer = (state = initialState, action) => {
@@ -19,6 +20,9 @@ const recipeReducer = (state = initialState, action) => {
       // console.log(obj);
       return obj;
     };
+    case types.CREATE_USER: {
+      
+    }
     default: {
       return state
     }

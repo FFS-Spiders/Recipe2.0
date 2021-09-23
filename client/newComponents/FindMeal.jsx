@@ -1,12 +1,18 @@
-import Filter from './filter.jsx'
-import MealDisplay from './MealDisplay'
+import React from 'react';
 
-function findMeals() {
+import MealDisplay from './MealDisplay.jsx';
+import Filter from './Filter.jsx';
+
+
+function FindMeal () {
 
   return(
     <div>
-      <Filters/>
+      <Filter/>
       <MealDisplay/>
     </div>
   )
 }
+
+
+export default FindMeal;
