@@ -10,9 +10,9 @@ const UserLogin = (props) => {
       Password
       <input type='password' id='password' name='password' />
       <button onClick={() => props.loginUser(document.getElementById('username').value, document.getElementById('password').value)}>Login!</button>
-      {/* <button onClick={(event) => props.createUser(event)}>
+      <button onClick={() => props.createUser(document.getElementById('username').value, document.getElementById('password').value)}>
         Create New User
-      </button> */}
+      </button>
     </div>
   );
 };

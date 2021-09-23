@@ -11,35 +11,25 @@ const mapStateToProps = state => ({
   password: state.recipes.password,
   
 });
-const mapDispatchToProps = dispatch => ({
-  isLoggedIn : (username, password) => {
-    return dispatch(actions.logIn(username, password))},
-})
+const mapDispatchToProps = dispatch => (
+  {
+    isLoggedIn : (username, password) => {
+      return dispatch(actions.logIn(username, password))},
+    createUser: (username, password) => {
+      return dispatch(actions.createUser(username,password))
+    }
+  }
+)
 
 class MainContainer extends Component {
   constructor(props) {
     super(props);
   }
   render() {
-    console.log('props',this.props)
-    // if (this.props.loggedIn === true) {
-    //   return (
-    //     <div>
-    //         Hello
-    //     </div>
-    //     // <Container/> 
-    //   );
-    // } else {
-    //   return (
-    //     <div>
-    //       <UserLogin loginUser={this.props.isLoggedIn} createUser={this.props.createUser} />
-    //       {console.log(this.state)}
-    //     </div>
-    //   );
-    if (this.props.loggedIn === false) {
+    if (this.props.loggedIn === 'false') {
       return (
         <div>
-          <UserLogin loginUser={this.props.isLoggedIn} />
+          <UserLogin loginUser={this.props.isLoggedIn} createUser={this.props.createUser} />
         </div>
       )
     } else {
