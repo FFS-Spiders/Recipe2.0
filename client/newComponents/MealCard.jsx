@@ -2,7 +2,9 @@ import React from 'react';
 
 const MealCard = (props) => {
   return (
-    <div>MealCard</div>
+    <div>
+      MealCard
+    </div>
   )
 }
 export default MealCard;

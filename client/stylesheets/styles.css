@@ -30,14 +30,14 @@
   /* border: 1px solid black; */
 }
 .listContainer {
-  width: 20vw; 
-  height: 100px; 
+  width: 20vw;
+  height: 100px;
   float: left;
 
 }
 .recipeContainer {
   /* margin-left: 50%;  */
-  height: 100px; 
+  height: 100px;
 }
 #filter {
   display: flex;
@@ -218,7 +218,7 @@ body {
 }
 #loginPanel button,
 #loginPanel input {
-  max-width: 12rem;
+  max-width: 100%;
 }
 #loginPanel input:last-of-type {
   margin-bottom: 2rem;

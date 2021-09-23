@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
   loggedIn: state.recipes.loggedIn,
   username: state.recipes.username,
   password: state.recipes.password,
-  
+
 });
 const mapDispatchToProps = dispatch => (
   {
@@ -17,6 +17,9 @@ const mapDispatchToProps = dispatch => (
       return dispatch(actions.logIn(username, password))},
     createUser: (username, password) => {
       return dispatch(actions.createUser(username,password))
+    },
+    googleLogin: (profileObj) => {
+      return dispatch(actions.googleLogin(profileObj))
     }
   }
 )
@@ -29,13 +32,13 @@ class MainContainer extends Component {
     if (this.props.loggedIn === 'false') {
       return (
         <div>
-          <UserLogin loginUser={this.props.isLoggedIn} createUser={this.props.createUser} />
+          <UserLogin loginUser={this.props.isLoggedIn} createUser={this.props.createUser} googleLogin={this.props.googleLogin}/>
         </div>
       )
     } else {
       return (
         <div>
-          <RecipeContainer/> 
+          <RecipeContainer/>
         </div>
       )
     }

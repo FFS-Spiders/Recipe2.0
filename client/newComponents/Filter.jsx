@@ -1,59 +1,23 @@
 import React from 'react';
 import axios from 'axios';
+import * as actions from '../actions/actions.js'
 
 const Filter = (props) => {
-  //a poorly written function to grab user input data and send it to the backend to then call api
-  function getRecipe() {
-    //just grabbing some of the userinput here!
-    const cuisineSelection = document.querySelector('#cuisineSelect').value;
-    let ingredientSelection = document.querySelector('#ingredientSelect').value;
-    const isPantryOnly = document.querySelector('#pantrySelect').checked;
-    const countSelection = document.querySelector('#countSelect').value;
-    //here we are resetting the ingredient selection to be just the pantryItems in state as a comma-separated string, if the 'pantry-only items' button is selected
-    let ingredientString = '';
-    if (isPantryOnly) {
-      props.pantryItems.forEach((el) => {
-        ingredientString += `${el},`;
-      });
-      ingredientSelection = ingredientString;
+
+  function getRecipe(cuisine, ingredients, pantry, number) {
+    const list = {
+      cuisine: cuisine,
+      ingredients: ingredients,
+      pantry: pantry,
+      number: number,
     }
-    axios({
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      data: {
-        cuisine: cuisineSelection,
-        ingredients: ingredientSelection,
-        numberOfResults: countSelection,
-      },
-      url: '/recipes/find',
-    }).then((data) => {
-      console.log(data);
-      const newObjArr = []; //this will hold all of the objects in the correct format so that the front-end can add them to the state to be rendered
-      //this is what the data from the backend looks like
-      //{titleArr, ingredientResults, directionResults, imgArr}
-      //directionResults -> {id, summary, title}
-      //ingredientResults -> {ingredients: [{name,image,amount:{metric:{value, unit}, us:{value, unit},}}]}
-      //titleArr, imgArr -> [string1, string2, string3...],
-      //an example response down below at bottom of page
-      data.data.titleArr.forEach((el, idx) => {
-        //here we create a new object for each title
-        let directions;
-        if (data.data.newDirectionResults[idx]) {
-          //checking if directions for that title exist, cause accessing undefined.summary throws typeError
-          directions = data.data.newDirectionResults[idx].summary;
-        } else directions = '';
-        const newObj = {
-          name: el,
-          ingredients: data.data.newIngredientResults[idx].map((el) => el.name),
-          img: data.data.imageArr[idx],
-          directions,
-        };
-        newObjArr.push(newObj);
-      });
-      props.addMeal(newObjArr);
-    });
+    return props.changeMealDisplay(list)
   }
+
   //there are lots and lots of cuisines the api can recognize! docs here: https://spoonacular.com/food-api/docs#Cuisines
+  // grab cuisine, ingredients, number of results into an object and pass to our thunk
+  // thunk calls backend at /recipes/find which calls the api
+  // button needs to dispatch thunk
   return (
     <div id='filter'>
       <h2>Find New Meals!</h2>
@@ -88,7 +52,13 @@ const Filter = (props) => {
           <option value='5'>5</option>
         </select>
       </label>
-      <button onClick={getRecipe}>Submit</button>
+      <button onClick={() => {getRecipe(
+        document.getElementById('cuisineSelect').value,
+        document.getElementById('ingredientSelect').value,
+        document.getElementById('pantrySelect').checked,
+        document.getElementById('countSelect').value
+        )}
+      }>Submit</button>
     </div>
   );
   ``;

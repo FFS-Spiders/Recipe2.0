@@ -21,6 +21,79 @@ export const addCartActionCreator = (item) => ({
   payload: item,
 })
 
+export const changeMealDisplayActionCreator = (list) => ({
+  type: types.CHANGE_MEAL,
+  payload: list,
+})
+
+// data: {
+//   cuisine: cuisineSelection,
+//   ingredients: ingredientSelection,
+//   numberOfResults: countSelection,
+// },
+export const changeMealDisplay = (list) => (dispatch, getState) => {
+  console.log('axios changemealdisplay')
+  axios
+    .post('http://localhost:3000/recipes/find',
+    {
+      cuisine: list.cuisine,
+      ingredients: list.ingredients,
+      count: list.count,
+    },
+    {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+    })
+    .then(response => {
+      console.log(response)
+      // return dispatch(changeMealDisplayActionCreator())
+    })
+}
+
+
+export const googleLogin = (profileObj) => (dispatch, getState) => {
+  axios
+    .post('http://localhost:3000/users/createGoogle',
+    {
+      email: profileObj.email,
+      picture: profileObj.imageUrl
+    },
+    {
+      method: post,
+      headers: {
+        'Content-type': 'application/json'
+      },
+    })
+    .then(response => {
+      console.log(response)
+      return dispatch(loggingInActionCreator())
+    })
+    .catch(err => {
+      axios.post('http://localhost:3000/users/login',
+      {
+      email: profileObj.email,
+      },
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+      })
+      .then((response) => {
+        console.log('response')
+        // if (response.data === 'Send to their page') {
+          console.log(response)
+          //this is the expected response from backend upon successful login
+          console.log('state in actions.js', getState())
+          return dispatch(loggingInActionCreator());
+
+      })
+      .catch((error) => console.log('Error from login. Hates u.' + error));
+    })
+}
+
 export const logIn = (username, password) => (dispatch, getState) => {
   console.log('state in actions.js', getState())
   // console.log(dispatch);
