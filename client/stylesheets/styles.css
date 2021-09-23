@@ -29,6 +29,16 @@
   height: 90vh;
   /* border: 1px solid black; */
 }
+.listContainer {
+  width: 20vw; 
+  height: 100px; 
+  float: left;
+
+}
+.recipeContainer {
+  /* margin-left: 50%;  */
+  height: 100px; 
+}
 #filter {
   display: flex;
   flex-direction: column;
