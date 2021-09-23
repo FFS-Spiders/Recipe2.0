@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import * as actions from '../actions/actions.js'
+import MealDisplay from './MealDisplay.jsx';
 
 const Filter = (props) => {
 
@@ -59,6 +60,7 @@ const Filter = (props) => {
         document.getElementById('countSelect').value
         )}
       }>Submit</button>
+      <MealDisplay />
     </div>
   );
   ``;

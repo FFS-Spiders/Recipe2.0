@@ -2,7 +2,7 @@ import React from 'react';
 
 const MealDisplay = (props) => {
   return (
-    <div>
+    <div id="mealDisplay">
       MealDisplay
     </div>
   )

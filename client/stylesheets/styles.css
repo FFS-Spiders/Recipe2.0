@@ -1,11 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
 .no-drag {
-  background-color: rgb(207, 218, 245);
+  background-color: white;
   /* width: 10rem;
   height: 100%; */
   /* border: 1px black solid; */
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+}
+*{
+  font-family: 'Poppins', sans-serif;
 }
 #googleButton{
   width: 100%;
@@ -24,15 +29,18 @@
 #aside {
   font-size: 13px;
   margin-top: 0.6rem;
-  background-color: #b9c2e1;
+  background-color: skyblue;
   width: 20vw;
   height: 90vh;
-  /* border: 1px solid black; */
+  border: 1px solid black;
+  border-radius: 4px;
+
 }
 .listContainer {
   width: 20vw;
   height: 100px;
   float: left;
+
 
 }
 .recipeContainer {
@@ -46,10 +54,11 @@
 .starArr input {
   width: 12px;
   height: 12px;
+  margin: 5px
 }
 
 .falseFavoriteButton {
-  background-color: #718355;
+  background-color: skyblue;
   width: 30px;
 }
 
@@ -93,7 +102,7 @@
   margin: 1rem 0;
 }
 .isActive {
-  background-color: #718355;
+  background-color: skyblue;
 }
 .mealCardList {
   border-radius: 0;
@@ -160,18 +169,20 @@ a {
   flex-direction: column;
 }
 .navBar {
-  background-color: #b5c99a;
+  background-color: skyblue;
   display: flex;
   margin-bottom: 1rem;
   /* border: solid 1px black; */
   align-self: center;
   justify-content: space-evenly;
+  border: 1px solid black;
+  border-radius: 4px
 }
 button {
   border-radius: 3px;
 }
 .navBar button {
-  background-color: #718355;
+  background-color: rgb(82, 195, 240);;
   border-radius: 2px;
 }
 .navBar button:last-of-type {
@@ -190,13 +201,7 @@ button {
   border-radius: 18px;
   /* border: 1px solid #97a97c; */
 }
-#mealDisplay {
-  width: 80vw;
-  overflow-y: auto;
-  background-color: #cfe1b9;
-  /* border: solid 1px black; */
-  display: flex;
-}
+
 #favDisplay {
   width: 80vw;
   overflow-y: auto;
@@ -236,18 +241,32 @@ body {
 * {
   background-color: inherit;
 }
+
 #filter {
-  margin-left: 2rem;
   justify-content: space-around;
   max-height: 400px;
+  text-align: center;
+  align-items: center;
 }
 #filter label {
-  font-size: 13px;
+  font-size: 15px;
 }
 #filter select {
   margin-left: 1rem;
-}
-#filter button,
-#filter select {
   max-width: 5rem;
+}
+#filter button, select {
+  max-width: 5rem;
+}
+
+#layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#mealDisplay {
+  margin: 10px;
+  font-size: 20px;
+  font-weight: 700;
 }

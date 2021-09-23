@@ -7,7 +7,7 @@ const FindMeal = (props) => {
   return (
     <div className='layout'>
       <Filter changeMealDisplay={props.changeMealDisplay}/>
-      <MealDisplay />
+      {/* <MealDisplay /> */}
     </div>
   )
 };
