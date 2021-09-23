@@ -23,8 +23,17 @@ mongoose.connect(MONGO_URI,{
 const recipeRouter = require('./routers/recipes.js');
 
 //--m handle parsing request body
+
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:8080"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 //serves base index.html file that react app hangs off of
 app.get('/', (req, res) =>
   res.sendFile(path.resolve(__dirname, '../index.html'))
