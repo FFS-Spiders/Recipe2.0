@@ -30,9 +30,8 @@ router.delete('/:name', databaseController.deleteUser, (req, res) =>
 
 //authenticates user on local db
 router.post('/login', databaseController.authenticateUser);
-
 // Get user middleware
-//not used in production version
+// not used in production version
 async function findUserById(req, res, next) {
   let user;
   try {

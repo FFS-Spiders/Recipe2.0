@@ -193,7 +193,6 @@ const App = () => {
     //i think its because gridlayout is not rerendering because it is not diffing so the diff algo doesnt pick it up
     // console.log(newLayout);
     setRendererArray(newRendererArray);
-    v;
   }
   //custom function that takes in array of objects, which is obtained from axios request from backend and sets state to make these objects render in the mealDisplay component
   function addMeal(array) {

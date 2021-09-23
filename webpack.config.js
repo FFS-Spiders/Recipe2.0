@@ -17,7 +17,7 @@ module.exports = {
     proxy: { '/': 'http://localhost:3000' },
     compress: true,
     port: 8080,
-    hot: true,
+    // hot: true,
   },
   module: {
     rules: [

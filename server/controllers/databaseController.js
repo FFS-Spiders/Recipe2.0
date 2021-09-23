@@ -14,7 +14,7 @@ databaseController.getAllUsers = async (req, res, next) => {
     res.locals.users = users;
     next();
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: `error: ${err}` });
   }
 };
 
@@ -35,6 +35,7 @@ databaseController.createUser = async (req, res, next) => {
     });
     const newUser = await user.save();
     res.send('Send to their page'); //frontend expects this message to validate user has been created
+    // return next()
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -58,7 +59,7 @@ databaseController.deleteUser = async (req, res, next) => {
 
 //verifies user info is correct before rendering app
 databaseController.authenticateUser = async (req, res, next) => {
-  console.log(req.body);
+  console.log(req.query, 'req.body');
   const user = await User.findOne({ username: req.body.username });
   console.log(user);
   if (user == null) {
@@ -73,8 +74,20 @@ databaseController.authenticateUser = async (req, res, next) => {
     next();
   } catch (error) {
     console.log(error);
-    res.status(500).send();
+    res.status(500).send('authenticator error');
   }
 };
+
+// databaseController.authenticateUser = (req, res, next) => {
+//   console.log(req.body);
+//   const user = User.findOne({ username: req.body.username });
+//   console.log(user);
+//   if (user == null) {
+//     return res.status(400).send('Cannot find user');
+//   }
+//   res.locals.message = 'Send to their page';
+//   return next();
+
+// };
 
 module.exports = databaseController;
