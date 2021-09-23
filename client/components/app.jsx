@@ -11,6 +11,8 @@ import Filter from './Filter.jsx';
 import FavsDisplay from './FavsDisplay.jsx';
 import UserLogin from './UserLogin.jsx';
 import axios from 'axios';
+
+
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   //state determines whether or not each parent component is rendered (fav/mealDisplay)
@@ -95,6 +97,20 @@ const App = () => {
       img: 'https://i.imgur.com/mSVtgYm.jpg',
     },
   ]);
+  const handleLogin = googleData => {
+    const res = fetch("/api/v1/auth/google", {
+        method: "POST",
+        body: JSON.stringify({
+        token: googleData.tokenId
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    const data = res.json()
+    setIsLoggedIn(true)
+    // store returned user somehow
+  }
   //custom function to login user
   function loginUser(event) {
     axios({
@@ -295,7 +311,12 @@ const App = () => {
     );
   } else {
     //if user is not logged in, show the userlogin page :)
-    return <UserLogin loginUser={loginUser} createUser={createUser} />;
+    return(
+    <div>
+      <UserLogin loginUser={loginUser} createUser={createUser} setIsLoggedIn={setIsLoggedIn} />
+    </div>
+    
+    ) 
   }
 };
 

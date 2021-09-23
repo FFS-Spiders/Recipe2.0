@@ -1,5 +1,5 @@
 .no-drag {
-  background-color: #b5c99a;
+  background-color: rgb(207, 218, 245);
   /* width: 10rem;
   height: 100%; */
   /* border: 1px black solid; */
@@ -7,7 +7,10 @@
   flex-direction: column;
   overflow-y: auto;
 }
-
+#googleButton{
+  width: 100%;
+  background-color: blue;
+}
 #app {
   display: flex;
   flex-direction: column;
@@ -21,7 +24,7 @@
 #aside {
   font-size: 13px;
   margin-top: 0.6rem;
-  background-color: #cfe1b9;
+  background-color: #b9c2e1;
   width: 20vw;
   height: 90vh;
   /* border: 1px solid black; */
@@ -195,7 +198,7 @@ button {
   text-align: center;
 }
 body {
-  background-color: #e9f5db;
+  background-color: rgb(173, 207, 230);
   font-family: Roboto, sans-serif;
 }
 #loginPanel {
@@ -205,7 +208,7 @@ body {
 }
 #loginPanel button,
 #loginPanel input {
-  max-width: 10rem;
+  max-width: 12rem;
 }
 #loginPanel input:last-of-type {
   margin-bottom: 2rem;
@@ -215,9 +218,11 @@ body {
   border-radius: 2px;
   margin-bottom: 1rem;
 }
-#loginPanel h2 {
+#loginPanel h2,h1 {
   margin-bottom: 2rem;
+  font-style: italic;
 }
+
 * {
   background-color: inherit;
 }
