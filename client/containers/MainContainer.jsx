@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
   loggedIn: state.recipes.loggedIn,
   username: state.recipes.username,
   password: state.recipes.password,
-  
+
 });
 const mapDispatchToProps = dispatch => (
   {
@@ -29,7 +29,7 @@ class MainContainer extends Component {
     super(props);
   }
   render() {
-    if (this.props.loggedIn === false) {
+    if (this.props.loggedIn === 'false') {
       return (
         <div>
           <UserLogin loginUser={this.props.isLoggedIn} createUser={this.props.createUser} googleLogin={this.props.googleLogin}/>
@@ -38,7 +38,7 @@ class MainContainer extends Component {
     } else {
       return (
         <div>
-          <RecipeContainer/> 
+          <RecipeContainer/>
         </div>
       )
     }

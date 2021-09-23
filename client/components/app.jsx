@@ -314,8 +314,8 @@ const App = () => {
     <div>
       <UserLogin loginUser={loginUser} createUser={createUser} setIsLoggedIn={setIsLoggedIn} />
     </div>
-    
-    ) 
+
+    )
   }
 };
 

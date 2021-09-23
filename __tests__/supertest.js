@@ -28,22 +28,20 @@ describe('Route integration', () => {
         .expect(200));
     })
   })
-  describe('/users/login', () => {
-    describe('POST', () => {
+  describe('POST /users/login', () => {
       it('responds with 200 status and text/html charset=utf-8 content type', () => request(server)
         .post('/users/login')
         .send(real)
         .expect('Content-Type', "text/html; charset=utf-8")
         .expect(200));
-    })
-    describe('POST', () => {
+
       it('responds with 404 status and text/html charset=utf-8 content type', () => request(server)
         .post('/users/login')
         .send(dummy)
         .expect('Content-Type', "text/html; charset=utf-8")
         .expect(404));
     })
-  })
+
   newUser = {username: 'Test', password: '123'};
   noPass = { username: 'Test2' };
   describe('/users/create', () => {

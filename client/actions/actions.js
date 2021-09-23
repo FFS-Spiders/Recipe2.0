@@ -21,6 +21,38 @@ export const addCartActionCreator = (item) => ({
   payload: item,
 })
 
+export const changeMealDisplayActionCreator = (list) => ({
+  type: types.CHANGE_MEAL,
+  payload: list,
+})
+
+// data: {
+//   cuisine: cuisineSelection,
+//   ingredients: ingredientSelection,
+//   numberOfResults: countSelection,
+// },
+export const changeMealDisplay = (list) => (dispatch, getState) => {
+  console.log('axios changemealdisplay')
+  axios
+    .post('http://localhost:3000/recipes/find',
+    {
+      cuisine: list.cuisine,
+      ingredients: list.ingredients,
+      count: list.count,
+    },
+    {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+    })
+    .then(response => {
+      console.log(response)
+      // return dispatch(changeMealDisplayActionCreator())
+    })
+}
+
+
 export const googleLogin = (profileObj) => (dispatch, getState) => {
   axios
     .post('http://localhost:3000/users/createGoogle',
@@ -98,7 +130,7 @@ export const createUser = (username, password) => (dispatch, getState) => {
       password: password
     },
     {
-      method: post,
+      method: 'POST',
       headers: {
         'Content-type': 'application/json'
       },

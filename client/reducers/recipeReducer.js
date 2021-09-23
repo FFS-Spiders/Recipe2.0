@@ -23,7 +23,7 @@ const recipeReducer = (state = initialState, action) => {
       return obj;
     };
     case types.CREATE_USER: {
-      
+
     };
     case types.ADD_PANTRY: {
       const { pantry } = state;

@@ -2,7 +2,9 @@ import React from 'react';
 
 const MealDisplay = (props) => {
   return (
-    <div>MealDisplay</div>
+    <div id="mealDisplay">
+      MealDisplay
+    </div>
   )
 }
 export default MealDisplay;
