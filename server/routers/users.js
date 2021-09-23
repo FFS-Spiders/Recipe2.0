@@ -18,6 +18,7 @@ router.get('/:id', findUserById, databaseController.getUser, (req, res) =>
 
 // Creating user
 router.post('/create', databaseController.createUser);
+router.post('/createGoogle', databaseController.createGoogleUser);
 
 // Deleting one user
 //not used in production version

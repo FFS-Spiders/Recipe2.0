@@ -33,11 +33,24 @@ databaseController.createUser = async (req, res, next) => {
       username: req.body.username,
       password: hashedPassword,
     });
-    const newUser = await user.save();
-    res.send('Send to their page'); //frontend expects this message to validate user has been created
+    await user.save();
+    return res.send('Send to their page'); //frontend expects this message to validate user has been created
     // return next()
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    return res.status(400).json({ message: err.message });
+  }
+};
+databaseController.createGoogleUser = async (req, res) => {
+  try {
+    const user = new User({
+      email: req.body.email,
+      picture: req.body.imageUrl,
+    });
+    await user.save();
+    return res.send('Successfully saved to the database!'); //frontend expects this message to validate user has been created
+    // return next()
+  } catch (err) {
+    return res.status(400).json({ message: err.message });
   }
 };
 
@@ -53,29 +66,42 @@ databaseController.deleteUser = async (req, res, next) => {
     // await res.user.remove();
     next();
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
 };
 
 //verifies user info is correct before rendering app
 databaseController.authenticateUser = async (req, res, next) => {
   console.log(req.query, 'req.body');
-  const user = await User.findOne({ username: req.body.username });
-  console.log(user);
-  if (user == null) {
-    return res.status(400).send('Cannot find user');
-  }
-  try {
-    if (await bcrypt.compare(req.body.password, user.password)) {
-      res.status(200).send('Send to their page');
+  // Authenticating log in with Google
+  if(req.body.email){
+    const user = await User.findOne({ email: req.body.email });
+    if (user == null) {
+      return res.status(400).send('Cannot find user');
     } else {
-      res.status(404).send('The username or password is incorrect');
+      return res.status(200).send('Send to their page');
     }
-    next();
-  } catch (error) {
-    console.log(error);
-    res.status(500).send('authenticator error');
+    //Authenticating normal log in
+  } else { 
+    const user = await User.findOne({ username: req.body.username });
+    console.log(user);
+    if (user == null) {
+      return res.status(400).send('Cannot find user');
+    }
+    try {
+    
+      if (await bcrypt.compare(req.body.password, user.password)) {
+        return res.status(200).send('Send to their page');
+      } else {
+        return res.status(404).send('The username or password is incorrect');
+      }
+      next();
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send('authenticator error');
+    }
   }
+ 
 };
 
 // databaseController.authenticateUser = (req, res, next) => {
